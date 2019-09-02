@@ -1,0 +1,4 @@
+- from:
+    uri: "knative:channel/dev-null"
+    steps:
+      - log: "Unknown cmd ${body}"
