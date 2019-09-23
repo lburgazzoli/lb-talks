@@ -1,0 +1,10 @@
+# camel-k:
+#
+# kamel kit create --image=lburgazzoli/camel-k-quarkus:1.0.2-SNAPSHOT camel-q
+# kamel run --dev src/dev-null.yaml --kit camel-q
+#
+
+- from:
+    uri: "knative:channel/dev-null"
+    steps:
+      - log: "Unknown cmd ${body}"

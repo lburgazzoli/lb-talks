@@ -1,0 +1,20 @@
+#
+# Setup OCP4
+#
+export GUID=<GUID>
+export OCP_VERSION=4.2.0-rc.3
+export AWS_ACCESS_KEY_ID=<YOURACCESSKEY>
+export AWS_SECRET_ACCESS_KEY=<YOURSECRETKEY>
+export REGION=eu-central-1
+
+openshift-install create cluster --dir $PWD/.cluster/cluster-${GUID}
+
+#
+# Set up camel-k
+#
+oc apply -f src/main/resources/channels.yaml
+oc create secret generic telegram --from-file=src/tg.properties
+
+./kamel install 
+
+http -b POST http://chuck.camel-k.apps.cluster-dea3.sandbox578.opentlc.com a=b
